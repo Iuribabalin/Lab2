@@ -15,6 +15,18 @@ public class DrawChart {
     public double f_parabola(double x){return 5*Math.pow(x,2)+2*x-3;}
     public double f_sin(double x){return Math.sin(x);}
 
+
+    public void draw_all_fun(int num_fun,double a, double b){
+        if(num_fun == 1)
+            draw_main(Math.round(a), Math.round(b));
+        else if(num_fun == 2)
+            draw_cos(Math.round(a), Math.round(b));
+        else if(num_fun == 3)
+            draw_parabola(Math.round(a), Math.round(b));
+        else if(num_fun == 4)
+            draw_sin(Math.round(a), Math.round(b));
+    }
+
     public void draw_main(long a, long b){
         a -= 1;
         b += 1;

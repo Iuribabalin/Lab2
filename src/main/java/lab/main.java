@@ -1,12 +1,11 @@
 package lab;
 
-import lab.Functions.Main_fun;
-import lab.Functions.Sin_fun;
 import lab.Inputs.CheckInterval;
 import lab.Inputs.InputParams;
 import lab.Methods.Chord_Method;
 import lab.Methods.Newton_Method;
 import lab.Methods.Simple_Iteration_Method;
+import lab.Outputs.DrawChart;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,6 +16,7 @@ public class main {
     public static void main(String[] args) throws IOException{
         InputParams input = new InputParams();
         CheckInterval checker = new CheckInterval();
+        DrawChart draw = new DrawChart();
 
         System.out.println("Программа начала свою работу");
         while (true){
@@ -57,6 +57,7 @@ public class main {
                 }
             }else{
                 int num_fun = input.InputNumFun();
+                draw.draw_all_fun(num_fun,-10,10);
                 double a = input.InputA();
                 double b = input.InputB();
                 if(checker.check(a,b, num_fun)){
@@ -82,6 +83,7 @@ public class main {
                 }else{
                     System.out.println("Извините программа не нашла корней");
                 }
+                input.stay();
             }
         }
     }
