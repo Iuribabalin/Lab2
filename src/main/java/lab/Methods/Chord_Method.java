@@ -105,7 +105,6 @@ public class Chord_Method {
             writer.write(String.format("f(x*) = %.13f%n", fun.f(current_X,num_fun)));
         }
         writer.flush();
-        draw.draw_main(Math.round(a), Math.round(b));
     }
 
 }

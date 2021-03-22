@@ -61,18 +61,18 @@ public class Simple_Iteration_Method {
                 e = (1 - q) * e / q;
                 if (!flag_file) {
                     System.out.println(" 0.5 < q < 1 Критерий окончания итерационного процесса изменён на" +
-                            " |Xn - Xn-1| > (1-q)*e/q ");
+                            " |Xn - Xn-1| <= (1-q)*e/q ");
                 }else{
                     writer.write(" 0.5 < q < 1 Критерий окончания итерационного процесса изменён на" +
-                            " |Xn - Xn-1| > (1-q)*e/q\n");
+                            " |Xn - Xn-1| <= (1-q)*e/q\n");
                 }
             }else if(q > 0 && q <= 0.5){
                 if(!flag_file)
                     System.out.println(" 0 < q <= 0.5 Критерий окончания итерационного процесса" +
-                        " |Xn - Xn-1| > e");
+                        " |Xn - Xn-1| <= e");
                 else
                     writer.write(" 0 < q <= 0.5 Критерий окончания итерационного процесса" +
-                            " |Xn - Xn-1| > e\n");
+                            " |Xn - Xn-1| <= e\n");
             }
 
             if (!flag_file)
@@ -116,6 +116,8 @@ public class Simple_Iteration_Method {
                 writer.write(String.format("x* = %.10f%n", start_X));
                 writer.write(String.format("f(x*) = %.10f%n", fun.f(start_X,num_fun)));
             }
+
+            draw.drawForIt(a, b,lambda,num_fun);
         }else{
             if (!flag_file)
                 System.out.println("Сходимость превышает 1 q = " + q);
@@ -124,6 +126,5 @@ public class Simple_Iteration_Method {
         }
 
         writer.flush();
-        draw.drawForIt_main(Math.round(a), Math.round(b), lambda);
     }
 }

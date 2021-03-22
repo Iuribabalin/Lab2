@@ -28,6 +28,7 @@ public class main {
                     FileReader fr = new FileReader("src/main/resources/" + fileName + ".txt");
                     Scanner scan = new Scanner(fr);
                     int num_fun = Integer.parseInt(scan.nextLine().trim());
+                    draw.draw_all_fun(num_fun,-10,10);
                     double a = Double.parseDouble(scan.nextLine().trim().replaceAll(",", "\\."));
                     double b = Double.parseDouble(scan.nextLine().trim().replaceAll(",", "\\."));
                     if (checker.check(a, b, num_fun)) {

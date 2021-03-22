@@ -99,7 +99,6 @@ public class Newton_Method {
             }
 
             writer.flush();
-            draw.draw_main(Math.round(a), Math.round(b));
         }
     }
 }

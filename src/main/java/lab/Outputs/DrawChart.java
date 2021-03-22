@@ -1,13 +1,14 @@
 package lab.Outputs;
 
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
-import java.io.File;
-import java.io.IOException;
+import javax.swing.*;
 
 public class DrawChart {
     public double f_cos(double x){return Math.cos(Math.pow(x,2));}
@@ -28,206 +29,134 @@ public class DrawChart {
     }
 
     public void draw_main(long a, long b){
-        a -= 1;
-        b += 1;
-        DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( f_main(i),
-                    "function", String.valueOf(i));
+        XYSeries series = new XYSeries("x^3 + 2.84*x^2 - 5.606*x - 14.766");
+
+        for(double i = a; i <= b; i+=0.01){
+            series.add(i, f_main(i));
         }
-        int x = 0;
-        JFreeChart lineChartObject = ChartFactory.createLineChart(
-                "fun(x)","x",
-                "y",
-                line_chart_dataset, PlotOrientation.VERTICAL,
-                true,true,false);
-        int width = 1920;    /* Width of the image */
-        int height = 1080;   /* Height of the image */
-        File lineChart = new File( "Chart.jpeg" );
-        try {
-            ChartUtilities.saveChartAsJPEG(lineChart ,lineChartObject, width ,height);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        XYDataset xyDataset = new XYSeriesCollection(series);
+        JFreeChart chart = ChartFactory
+                .createXYLineChart("y = x^3 + 2.84*x^2 - 5.606*x - 14.766", "x", "y",
+                        xyDataset,
+                        PlotOrientation.VERTICAL,
+                        true, true, true);
+        JFrame frame =
+                new JFrame("MinimalStaticChart");
+        // Помещаем график на фрейм
+        frame.getContentPane()
+                .add(new ChartPanel(chart));
+        frame.setSize(400,300);
+        frame.show();
     }
 
     public void draw_cos(long a, long b){
-        a -= 1;
-        b += 1;
-        DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( f_cos(i),
-                    "function", String.valueOf(i));
+        XYSeries series = new XYSeries("cos(x^2)");
+
+        for(double i = a; i <= b; i+=0.01){
+            series.add(i, f_cos(i));
         }
-        int x = 0;
-        JFreeChart lineChartObject = ChartFactory.createLineChart(
-                "fun(x)","x",
-                "y",
-                line_chart_dataset, PlotOrientation.VERTICAL,
-                true,true,false);
-        int width = 1920;    /* Width of the image */
-        int height = 1080;   /* Height of the image */
-        File lineChart = new File( "Chart.jpeg" );
-        try {
-            ChartUtilities.saveChartAsJPEG(lineChart ,lineChartObject, width ,height);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        XYDataset xyDataset = new XYSeriesCollection(series);
+        JFreeChart chart = ChartFactory
+                .createXYLineChart("y = cos(x^2)", "x", "y",
+                        xyDataset,
+                        PlotOrientation.VERTICAL,
+                        true, true, true);
+        JFrame frame =
+                new JFrame("MinimalStaticChart");
+        // Помещаем график на фрейм
+        frame.getContentPane()
+                .add(new ChartPanel(chart));
+        frame.setSize(400,300);
+        frame.show();
     }
 
     public void draw_parabola(long a, long b){
-        a -= 1;
-        b += 1;
-        DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( f_parabola(i),
-                    "function", String.valueOf(i));
+        XYSeries series = new XYSeries("5*x^(2) + 2*x - 3");
+
+        for(double i = a; i <= b; i+=0.01){
+            series.add(i, f_parabola(i));
         }
-        int x = 0;
-        JFreeChart lineChartObject = ChartFactory.createLineChart(
-                "fun(x)","x",
-                "y",
-                line_chart_dataset, PlotOrientation.VERTICAL,
-                true,true,false);
-        int width = 1920;    /* Width of the image */
-        int height = 1080;   /* Height of the image */
-        File lineChart = new File( "Chart.jpeg" );
-        try {
-            ChartUtilities.saveChartAsJPEG(lineChart ,lineChartObject, width ,height);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        XYDataset xyDataset = new XYSeriesCollection(series);
+        JFreeChart chart = ChartFactory
+                .createXYLineChart("y = 5*x^(2) + 2*x - 3", "x", "y",
+                        xyDataset,
+                        PlotOrientation.VERTICAL,
+                        true, true, true);
+        JFrame frame =
+                new JFrame("MinimalStaticChart");
+        // Помещаем график на фрейм
+        frame.getContentPane()
+                .add(new ChartPanel(chart));
+        frame.setSize(400,300);
+        frame.show();
     }
 
     public void draw_sin(long a, long b){
-        a -= 1;
-        b += 1;
-        DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( f_sin(i),
-                    "function", String.valueOf(i));
+        XYSeries series = new XYSeries("sin(x)");
+
+        for(double i = a; i <= b; i+=0.01){
+            series.add(i, f_sin(i));
         }
-        int x = 0;
-        JFreeChart lineChartObject = ChartFactory.createLineChart(
-                "fun(x)","x",
-                "y",
-                line_chart_dataset, PlotOrientation.VERTICAL,
-                true,true,false);
-        int width = 1920;    /* Width of the image */
-        int height = 1080;   /* Height of the image */
-        File lineChart = new File( "Chart.jpeg" );
-        try {
-            ChartUtilities.saveChartAsJPEG(lineChart ,lineChartObject, width ,height);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        XYDataset xyDataset = new XYSeriesCollection(series);
+        JFreeChart chart = ChartFactory
+                .createXYLineChart("y = sin(x)", "x", "y",
+                        xyDataset,
+                        PlotOrientation.VERTICAL,
+                        true, true, true);
+        JFrame frame =
+                new JFrame("MinimalStaticChart");
+        // Помещаем график на фрейм
+        frame.getContentPane()
+                .add(new ChartPanel(chart));
+        frame.setSize(400,300);
+        frame.show();
     }
 
 
-    public void drawForIt_main(long a, long b, double lambda){
-        a -= 1;
-        b += 1;
-        DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( i-lambda*f_main(i),
-                    "function", String.valueOf(i));
-        }
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( i,
-                    "x=y", String.valueOf(i));
-        }
-        JFreeChart lineChartObject = ChartFactory.createLineChart(
-                "fun(x)","x",
-                "y",
-                line_chart_dataset, PlotOrientation.VERTICAL,
-                true,true,false);
-        int width = 1920;
-        int height = 1080;
-        File lineChart = new File( "Chart.jpeg" );
-        try {
-            ChartUtilities.saveChartAsJPEG(lineChart ,lineChartObject, width ,height);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    public void drawForIt(double a, double b, double lambda, int num_fun){
+        XYSeries series = new XYSeries("Fi(x)");
+        XYSeries series1 = new XYSeries("x=y");
+        XYSeriesCollection dataset = new XYSeriesCollection();
 
-    public void drawForIt_cos(long a, long b, double lambda){
-        a -= 1;
-        b += 1;
-        DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( i-lambda*f_cos(i),
-                    "function", String.valueOf(i));
+        if(num_fun == 1) {
+            for(double i = a; i <= b; i+=0.01){
+                series.add(i, i - lambda * f_main(i));
+            }
+        }else if(num_fun == 2){
+            for(double i = a; i <= b; i+=0.01){
+                series.add(i, i - lambda * f_cos(i));
+            }
+        }else if(num_fun == 3){
+            for(double i = a; i <= b; i+=0.01){
+                series.add(i, i - lambda * f_parabola(i));
+            }
+        }else if(num_fun == 4){
+            for(double i = a; i <= b; i+=0.01){
+                series.add(i, i - lambda * f_sin(i));
+            }
         }
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( i,
-                    "x=y", String.valueOf(i));
-        }
-        JFreeChart lineChartObject = ChartFactory.createLineChart(
-                "fun(x)","x",
-                "y",
-                line_chart_dataset, PlotOrientation.VERTICAL,
-                true,true,false);
-        int width = 1920;
-        int height = 1080;
-        File lineChart = new File( "Chart.jpeg" );
-        try {
-            ChartUtilities.saveChartAsJPEG(lineChart ,lineChartObject, width ,height);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void drawForIt_parabola(long a, long b, double lambda){
-        a -= 1;
-        b += 1;
-        DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( i-lambda*f_parabola(i),
-                    "function", String.valueOf(i));
-        }
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( i,
-                    "x=y", String.valueOf(i));
-        }
-        JFreeChart lineChartObject = ChartFactory.createLineChart(
-                "fun(x)","x",
-                "y",
-                line_chart_dataset, PlotOrientation.VERTICAL,
-                true,true,false);
-        int width = 1920;
-        int height = 1080;
-        File lineChart = new File( "Chart.jpeg" );
-        try {
-            ChartUtilities.saveChartAsJPEG(lineChart ,lineChartObject, width ,height);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void drawForIt_sin(long a, long b, double lambda){
-        a -= 1;
-        b += 1;
-        DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( i-lambda*f_sin(i),
-                    "function", String.valueOf(i));
+        for(double i = a; i <= b; i+=0.01){
+            series1.add(i, i);
         }
-        for(long i = a; i <= b; i++){
-            line_chart_dataset.addValue( i,
-                    "x=y", String.valueOf(i));
-        }
-        JFreeChart lineChartObject = ChartFactory.createLineChart(
-                "fun(x)","x",
-                "y",
-                line_chart_dataset, PlotOrientation.VERTICAL,
-                true,true,false);
-        int width = 1920;
-        int height = 1080;
-        File lineChart = new File( "Chart.jpeg" );
-        try {
-            ChartUtilities.saveChartAsJPEG(lineChart ,lineChartObject, width ,height);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        dataset.addSeries(series);
+        dataset.addSeries(series1);
+
+        JFreeChart chart = ChartFactory.createXYLineChart("Fi(x)","x",
+                "Y", dataset, PlotOrientation.VERTICAL,
+                true, true, false);
+
+        JFrame frame =
+                new JFrame("MinimalStaticChart");
+        // Помещаем график на фрейм
+        frame.getContentPane()
+                .add(new ChartPanel(chart));
+        frame.setSize(400,300);
+        frame.show();
     }
 }
