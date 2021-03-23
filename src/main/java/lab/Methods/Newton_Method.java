@@ -46,6 +46,12 @@ public class Newton_Method {
         }else{
             last_X = fun.setStartX(a,b,num_fun);
 
+            if(last_X == a){
+                System.out.println("Начальным приближением выбран a = " + a);
+            }else{
+                System.out.println("Начальным приближением выбран b = " + b);
+            }
+
             current_X = fun.newton_step(last_X,num_fun);
 
             abs = Math.abs(current_X - last_X);

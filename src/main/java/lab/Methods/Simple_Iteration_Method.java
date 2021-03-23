@@ -48,6 +48,7 @@ public class Simple_Iteration_Method {
         start_X = fun.Fi(last_X, lambda,num_fun);
 
         q = fun.setMaxQ(a,b,lambda,num_fun);
+
         if (!flag_file) {
             System.out.println("Сходимость в точке a = " + a + " q = " + Math.abs(fun.Fi_(a, lambda,num_fun)));
             System.out.println("Сходимость в точке b = " + b + " q = " + Math.abs(fun.Fi_(b, lambda,num_fun)));

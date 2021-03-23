@@ -38,9 +38,27 @@ public class Chord_Method {
         }
 
         double start_X,end_X,current_X, last_X, abs;
+        boolean flag_a = false;
         last_X = 0;
 
         start_X = fun.setStartX(a,b,num_fun);
+
+        if(start_X == a){
+            System.out.println("a = " + start_X);
+            System.out.println("f(a) = " + fun.f(a,num_fun));
+            System.out.println("f__(a) = " + fun.f__(a,num_fun));
+            System.out.println("\nВыбрано занчение a\n");
+            System.out.println("f(b) = " + fun.f(b,num_fun));
+            System.out.println("f__(b) = " + fun.f__(b,num_fun));
+        }else{
+            flag_a = true;
+            System.out.println("b = " + start_X);
+            System.out.println("f(b) = " + fun.f(b,num_fun));
+            System.out.println("f__(b) = " + fun.f__(b,num_fun));
+            System.out.println("\nВыбрано занчение b\n");
+            System.out.println("f(a) = " + fun.f(a,num_fun));
+            System.out.println("f__(a) = " + fun.f__(a,num_fun));
+        }
 
         if(start_X == a)
             end_X = b;
@@ -57,7 +75,7 @@ public class Chord_Method {
         else
             writer.write(prT.printHead2_File());
 
-        while (fun.f(current_X,num_fun) > e || abs > e){
+        while (true){
             if(iterations == 0){
                 if(!flag_file)
                     prT.printLine2(iterations,start_X,end_X,current_X,fun.f(start_X,num_fun),
@@ -74,17 +92,24 @@ public class Chord_Method {
                             fun.f(end_X,num_fun),fun.f(current_X,num_fun),abs));
             }
 
-            if (fun.f(start_X,num_fun) > 0 && fun.f(current_X,num_fun) < 0 ||
-                    fun.f(start_X,num_fun) < 0 &&fun.f(current_X,num_fun) > 0) {
+            if (flag_a) {
                 end_X = current_X;
-            }else if (fun.f(end_X,num_fun) > 0 && fun.f(current_X,num_fun) < 0 ||
-                    fun.f(end_X,num_fun) < 0 && fun.f(current_X,num_fun) > 0) {
+            }else{
                 start_X = current_X;
             }
+
             last_X = current_X;
+
             current_X = fun.chord_step(start_X,end_X,num_fun);
+
             abs = Math.abs(current_X - last_X);
             iterations++;
+
+
+           if(abs < e && Math.abs(fun.f(current_X,num_fun)) < e){
+                break;
+           }
+
         }
 
         if(!flag_file)
@@ -96,6 +121,7 @@ public class Chord_Method {
 
         if(!flag_file) {
             System.out.println("За " + iterations + " итераций был найден ответ. Точночть ответа " + e);
+            System.out.println(abs);
             System.out.printf("x* = %.13f%n", current_X);
             System.out.printf("f(x*) = %.13f%n", fun.f(current_X,num_fun));
             System.out.println("");
