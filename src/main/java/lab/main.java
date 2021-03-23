@@ -41,7 +41,7 @@ public class main {
                                 Chord_Method method = new Chord_Method(a, b, e, num_fun, flag_file);
                                 method.start();
                             } else if (num_method == 2) {
-                                Newton_Method method = new Newton_Method(a, b, e, num_method, flag_file);
+                                Newton_Method method = new Newton_Method(a, b, e, num_fun, flag_file);
                                 method.start();
                             } else if (num_method == 3) {
                                 Simple_Iteration_Method method = new Simple_Iteration_Method(a, b, e, num_fun, flag_file);
@@ -72,7 +72,7 @@ public class main {
                             Chord_Method method = new Chord_Method(a,b,e,num_fun,flag_file);
                             method.start();
                         }else if(num_method == 2){
-                            Newton_Method method = new Newton_Method(a,b,e,num_method,flag_file);
+                            Newton_Method method = new Newton_Method(a,b,e,num_fun,flag_file);
                             method.start();
                         }else if(num_method == 3){
                             Simple_Iteration_Method method = new Simple_Iteration_Method(a,b,e,num_fun,flag_file);
